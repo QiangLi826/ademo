@@ -26,14 +26,22 @@ ent = Entry(frame, width=50, textvariable=v1).pack(fill=X, side=LEFT)  # x方向
 ent = Entry(frame_1, width=50, textvariable=v2).pack(fill=X, side=LEFT)  # x方向填充,靠左
 
 
+def toWindowsPath(linux_path):
+    if linux_path.find('/'):
+        list = linux_path.split('/')
+        winPath = '\\'.join(list)
+        return winPath
+
+    return linux_path
+
 def inputDirectoryOpen():
-    input_dir = askdirectory()
+    input_dir = toWindowsPath(askdirectory())
     if input_dir:
         v1.set(input_dir)
 
 
 def outputDirectoryOpen():
-    output_dir = askdirectory()
+    output_dir = toWindowsPath(askdirectory())
     if output_dir:
         v2.set(output_dir)
 
